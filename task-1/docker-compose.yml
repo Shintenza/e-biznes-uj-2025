@@ -1,0 +1,11 @@
+services:
+  service1:
+    build:
+      context: .               
+      dockerfile: Dockerfile.python
+    image: python             
+  service2:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: java-app

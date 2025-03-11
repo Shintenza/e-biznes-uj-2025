@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:23.0'
+    compile 'org.xerial:sqlite-jdbc:3.45.1.0'
+    testCompile 'junit:junit:4.12'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'App'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+ }
+
+mainClassName = 'App'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
