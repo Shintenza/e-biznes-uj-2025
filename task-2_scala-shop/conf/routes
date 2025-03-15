@@ -1,0 +1,21 @@
+GET     /products                                       controllers.ProductController.list
+GET     /products/:id                                   controllers.ProductController.get(id: Long)
+POST    /products                                       controllers.ProductController.create
+PUT     /products/:id                                   controllers.ProductController.update(id: Long)
+DELETE  /products/:id                                   controllers.ProductController.delete(id: Long)
+
+GET     /categories                                     controllers.CategoryController.list
+GET     /categories/:categoryId/products                controllers.CategoryController.productsByCategory(categoryId: Long)
+GET     /categories/:id                                 controllers.CategoryController.get(id: Long)
+PUT     /categories/:id                                 controllers.CategoryController.update(id: Long)
+DELETE  /categories/:id                                 controllers.CategoryController.delete(id: Long)
+
+
+GET     /baskets                                        controllers.BasketController.list
+GET     /baskets/:id                                    controllers.BasketController.get(id: Long)
+POST    /baskets                                        controllers.BasketController.create
+PUT     /baskets/:id                                    controllers.BasketController.update(id: Long)
+DELETE  /baskets/:id                                    controllers.BasketController.delete(id: Long)
+POST    /baskets/:basketId/items/:productId             controllers.BasketController.addItemToBasket(basketId: Long, productId: Long, quantity: Int)
+GET     /baskets/:basketId/items                        controllers.BasketController.getBasketItems(basketId: Long)
+DELETE  /baskets/:basketId/items/:productId             controllers.BasketController.removeItemFromBasket(basketId: Long, productId: Long)

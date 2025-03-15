@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    container_name: shop
+    restart: always
+    environment:
+      POSTGRES_DB: shop
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - network
+  app:
+    container_name: shop-api
+    environment:
+      DATABASE_HOST: db
+      HTTP_SECRET: "this is just a random string. Nothing really fancy but for production change that to something else"
+    build:
+      context: .
+      args:
+        NGROK_TOKEN: 2uM9Ooh3N0RUBKUvchnRVEf2U2a_3W9W1cKrNREXZeNp1uEMh
+    networks:
+      - network
+networks:
+  network:
+    driver: bridge
+volumes:
+  db-data:
