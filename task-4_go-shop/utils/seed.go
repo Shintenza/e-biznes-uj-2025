@@ -78,7 +78,7 @@ func SeedDatabase() {
 		},
 	}
 
-	config.DB.Create(categories)
-	config.DB.Create(products)
-	config.DB.Create(carts)
+	config.DB.Save(categories)
+	config.DB.Save(products)
+	config.DB.Save(carts)
 }

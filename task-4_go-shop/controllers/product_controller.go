@@ -16,13 +16,13 @@ func ListProducts(c echo.Context) error {
 }
 
 func RemoveProduct(c echo.Context) error {
-	return services.Remove[models.Product](c)
+	return services.Remove[models.Product](c, "id")
 }
 
 func UpdateProduct(c echo.Context) error {
-	return services.Update[models.Product](c)
+	return services.Update[models.Product](c, "id")
 }
 
 func GetProduct(c echo.Context) error {
-	return services.Get[models.Product](c)
+	return services.Get[models.Product](c, "id")
 }

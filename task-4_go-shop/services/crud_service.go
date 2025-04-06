@@ -31,7 +31,7 @@ func List[T any](c echo.Context) error {
 	return c.JSON(http.StatusOK, entities)
 }
 
-func Remove[T any](c echo.Context) error {
+func Remove[T any](c echo.Context, param string) error {
 	entity := new(T)
 	id := c.Param("id")
 	if err := config.DB.Delete(entity, id); err != nil {
@@ -41,9 +41,8 @@ func Remove[T any](c echo.Context) error {
 
 }
 
-func Update[T any](c echo.Context) error {
-
-	id := c.Param("id")
+func Update[T any](c echo.Context, param string) error {
+	id := c.Param(param)
 
 	var entity T
 
@@ -63,7 +62,7 @@ func Update[T any](c echo.Context) error {
 	return c.NoContent(http.StatusOK)
 }
 
-func Get[T any](c echo.Context) error {
+func Get[T any](c echo.Context, param string) error {
 	id := c.Param("id")
 	var product T
 
