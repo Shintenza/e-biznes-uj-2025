@@ -1,0 +1,31 @@
+version: "1.0"
+
+services:
+  backend:
+    build:
+      context: ./../task-4_go-shop
+      dockerfile: Dockerfile
+    container_name: shop-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: shop-frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+    environment:
+      - VITE_BACKEND_URL=http://localhost:8000
+    command: ["npm", "run", "dev", "--", "--host"]
+
+networks:
+  app-network:
+    driver: bridge

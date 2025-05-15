@@ -10,7 +10,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
   return (
     <Grid templateColumns="repeat(3, 1fr)" gap="12px" maxW="fit-content">
       {products.map((product) => (
-        <ProductCard product={product} />
+        <ProductCard product={product} key={product.id} />
       ))}
     </Grid>
   );
