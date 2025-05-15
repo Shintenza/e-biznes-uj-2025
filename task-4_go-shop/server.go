@@ -6,6 +6,7 @@ import (
 	"go_shop/utils"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -13,6 +14,10 @@ func main() {
 	utils.SeedDatabase()
 
 	e := echo.New()
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://localhost:5173"},
+	}))
+
 	routes.RegisterRoutes(e)
 
 	e.Logger.Fatal(e.Start(":8000"))

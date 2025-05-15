@@ -28,4 +28,7 @@ func RegisterRoutes(e *echo.Echo) {
 	e.POST("/carts/:id/products/:itemId", controllers.AddProductToCart)
 	e.PUT("/carts/:id/products/:itemId", controllers.UpdateCartItem)
 	e.DELETE("/carts/:id/products/:itemId", controllers.RemoveCartItem)
+
+	// dummy endpoint for handling checkout
+	e.POST("/checkout", controllers.HandleCheckout)
 }

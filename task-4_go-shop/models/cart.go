@@ -1,9 +1,7 @@
 package models
 
-import "gorm.io/gorm"
-
 type Cart struct {
-	gorm.Model
+	ModelBase
 	UserId    uint       `json:"user_id"`
 	CartItems []CartItem `gorm:"constraint:OnUpdate:CASCADE;"`
 }
