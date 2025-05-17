@@ -1,0 +1,4 @@
+pre-commit:
+  commands:
+    lint:
+      run: cd taks-4_go-shop && golangci-lint run 
