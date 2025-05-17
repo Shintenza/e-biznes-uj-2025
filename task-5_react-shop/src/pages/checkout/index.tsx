@@ -9,7 +9,13 @@ import { useNavigate } from "react-router";
 import { toaster } from "@/components/ui/toaster";
 
 const Checkout = () => {
-  const { control, handleSubmit } = useForm<CheckoutFormData>();
+  const { control, handleSubmit } = useForm<CheckoutFormData>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+    },
+  });
   const { mutateAsync } = useCheckout();
   const basket = useBasketStore((state) => state.products);
   const emptyBasket = useBasketStore((state) => state.emptyBasket);
@@ -20,6 +26,14 @@ const Checkout = () => {
       ...data,
       products: basket,
     };
+    if (basket.length === 0) {
+      toaster.create({
+        title: "Basket is empty",
+        type: "error",
+      });
+      return;
+    }
+
     try {
       await mutateAsync(checkoutData);
       emptyBasket();
@@ -37,8 +51,8 @@ const Checkout = () => {
   };
 
   return (
-    <Stack>
-      <Text as="b" fontSize="xl">
+    <Stack data-testid="checkout-container">
+      <Text as="b" fontSize="xl" data-testid="checkout-header">
         Checkout
       </Text>
       <CheckoutForm control={control} onSubmit={handleSubmit(handleForm)} />

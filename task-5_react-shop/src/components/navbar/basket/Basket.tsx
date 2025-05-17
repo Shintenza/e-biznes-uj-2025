@@ -8,10 +8,10 @@ const Basket = () => {
   const navigate = useNavigate();
 
   return (
-    <Box position="relative" cursor="pointer">
+    <Box position="relative" cursor="pointer" data-testid="basket-container">
       {productsCount > 0 && (
         <Float>
-          <Circle size="5" bg="red" color="white">
+          <Circle size="5" bg="red" color="white" data-testid="basket-badge">
             {productsCount}
           </Circle>
         </Float>

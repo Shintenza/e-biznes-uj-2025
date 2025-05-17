@@ -18,10 +18,11 @@ const BasketItem = ({ product }: BasketItemProps) => {
       justifyContent="space-between"
       w="100%"
       pr="24px"
+      data-testid="basket-item"
     >
       <HStack>
-        <Image src={product.imageUrl} w="240px" aspectRatio="16/9" />
-        <Text>{product.name}</Text>
+        <Image src={product.imageUrl} w="240px" aspectRatio="16/9" data-testid="basket-item-image" />
+        <Text data-testid="basket-item-title">{product.name}</Text>
       </HStack>
 
       <HStack>

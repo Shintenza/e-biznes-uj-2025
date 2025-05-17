@@ -13,21 +13,21 @@ const Basket = () => {
   return (
     <Stack>
       <HStack justifyContent="space-between">
-        <Text as="b" fontSize="xl">
+        <Text as="b" fontSize="xl" data-testid="basket-header">
           Basket
         </Text>
         {!isBasketEmpty && (
-          <Button onClick={() => navigate("/checkout")}>Checkout</Button>
+          <Button onClick={() => navigate("/checkout")} data-testid="checkout-button">Checkout</Button>
         )}
       </HStack>
-      {isBasketEmpty && <Text>The basket is empty</Text>}
+      {isBasketEmpty && <Text data-testid="basket-empty">The basket is empty</Text>}
       <Stack>
         {products.map((product) => (
           <BasketItem product={product} />
         ))}
       </Stack>
 
-      <Text as="b">{`Total price: $${totalPrice}`}</Text>
+      <Text as="b" data-testid="basket-total">{`Total price: $${totalPrice}`}</Text>
     </Stack>
   );
 };

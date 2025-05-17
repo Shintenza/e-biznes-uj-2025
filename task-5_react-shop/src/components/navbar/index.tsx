@@ -6,7 +6,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <HStack boxShadow="xs" py="42px" px="84px" justifyContent="space-between">
-      <Text fontSize="xl" onClick={() => navigate("/")} cursor="pointer">
+      <Text 
+        fontSize="xl" 
+        onClick={() => navigate("/")} 
+        cursor="pointer"
+        data-testid="navbar-header"
+      >
         Simple Shop
       </Text>
       <Basket />

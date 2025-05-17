@@ -8,7 +8,7 @@ const Products = () => {
   if (isLoading) return <FullScreenSpinner />;
   return (
     <Stack px="64px" flexDir="column" alignItems="center" gap="32px">
-      <Text fontSize="xl">Available products</Text>
+      <Text fontSize="xl" data-testid="products-header">Available products</Text>
       <ProductsGrid products={data ?? []} />
     </Stack>
   );

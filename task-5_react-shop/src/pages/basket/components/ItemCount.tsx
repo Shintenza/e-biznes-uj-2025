@@ -11,12 +11,12 @@ const ItemCount = ({ count, onIncrease, onDecrease }: ItemCountProps) => {
   return (
     <NumberInput.Root value={`${count}`} unstyled spinOnPress={false}>
       <HStack gap="2">
-        <IconButton variant="outline" size="sm" onClick={onDecrease}>
+        <IconButton variant="outline" size="sm" onClick={onDecrease} data-testid="decrease-quantity">
           <LuMinus />
         </IconButton>
-        <NumberInput.ValueText textAlign="center" fontSize="lg" minW="3ch" />
+        <NumberInput.ValueText textAlign="center" fontSize="lg" minW="3ch" data-testid="item-quantity" />
         <NumberInput.IncrementTrigger asChild>
-          <IconButton variant="outline" size="sm" onClick={onIncrease}>
+          <IconButton variant="outline" size="sm" onClick={onIncrease} data-testid="increase-quantity">
             <LuPlus />
           </IconButton>
         </NumberInput.IncrementTrigger>

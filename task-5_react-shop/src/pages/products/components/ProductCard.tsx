@@ -21,29 +21,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
     updateBasket();
   };
   return (
-    <Card.Root maxW="sm" overflow="hidden" maxH="sm">
-      <Image src={imageUrl} alt={`photo of ${name}`} maxH="190px" />
+    <Card.Root maxW="sm" overflow="hidden" maxH="sm" data-testid="product-card">
+      <Image src={imageUrl} alt={`photo of ${name}`} maxH="190px" data-testid="product-image" />
       <Card.Body gap="4px">
         <Card.Title>
           <HStack justifyContent="space-between" alignItems="center">
-            <Text>{name}</Text>
+            <Text data-testid="product-title">{name}</Text>
             <Text
               textStyle="2xl"
               fontWeight="medium"
               letterSpacing="tight"
               mt="2"
+              data-testid="product-price"
             >
               ${price}
             </Text>
           </HStack>
         </Card.Title>
-        <Card.Description>{description}</Card.Description>
+        <Card.Description data-testid="product-description">{description}</Card.Description>
       </Card.Body>
       <Card.Footer>
-        <Button variant="solid" onClick={handleBuyNow}>
+        <Button variant="solid" onClick={handleBuyNow} data-testid="buy-now-button">
           Buy now
         </Button>
-        <Button variant="outline" onClick={updateBasket}>
+        <Button variant="outline" onClick={updateBasket} data-testid="add-to-cart-button">
           Add to cart
         </Button>
       </Card.Footer>

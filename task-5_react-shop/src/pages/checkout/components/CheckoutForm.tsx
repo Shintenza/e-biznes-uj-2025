@@ -11,7 +11,18 @@ type CheckoutFromProps = {
 
 const commonFormRules = {
   required: "This field is required",
+  pattern: {
+    value: /^[a-zA-Z]+$/,
+    message: "Only letters are allowed",
+  },
 };
+
+const emailRule = {
+  pattern: {
+    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    message: "Invalid email address",
+  }
+}
 
 const CheckoutForm = ({ control, onSubmit }: CheckoutFromProps) => {
   const getTotalPrice = useBasketStore((state) => state.getTotalPrice);
@@ -37,10 +48,10 @@ const CheckoutForm = ({ control, onSubmit }: CheckoutFromProps) => {
         name="email"
         label="Email"
         placeholder="eg. joe.smith@mail.com"
-        rules={commonFormRules}
+        rules={{...commonFormRules, ...emailRule}}
       />
-      <Text>{`Total amount to pay: $${getTotalPrice()}`}</Text>
-      <Button onClick={onSubmit}>Pay</Button>
+      <Text data-testid="total-amount-to-pay">{`Total amount to pay: $${getTotalPrice()}`}</Text>
+      <Button onClick={onSubmit} data-testid="pay-button" >Pay</Button>
     </Stack>
   );
 };
