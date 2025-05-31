@@ -33,8 +33,10 @@ func List[T any](c echo.Context) error {
 
 func Remove[T any](c echo.Context, param string) error {
 	entity := new(T)
-	id := c.Param("id")
-	if err := config.DB.Delete(entity, id); err != nil {
+	id := c.Param(param)
+	result := config.DB.Delete(entity, id)
+
+	if result.Error != nil {
 		return c.NoContent(http.StatusInternalServerError)
 	}
 	return c.NoContent(http.StatusNoContent)
@@ -44,18 +46,19 @@ func Remove[T any](c echo.Context, param string) error {
 func Update[T any](c echo.Context, param string) error {
 	id := c.Param(param)
 
-	var entity T
+	entity := new(T)
 
-	if err := config.DB.First(&entity, id).Error; err != nil {
+	if err := config.DB.First(entity, id).Error; err != nil {
 		return c.NoContent(http.StatusNotFound)
 	}
 
 	var updates map[string]any
-	if err := c.Bind(&updates); err != nil {
+	if err := (&echo.DefaultBinder{}).BindBody(c, &updates); err != nil {
 		return c.NoContent(http.StatusBadRequest)
 	}
 
-	if err := config.DB.Model(&entity).Save(updates).Error; err != nil {
+	result := config.DB.Model(entity).Updates(updates)
+	if err := result.Error; err != nil {
 		return c.NoContent(http.StatusInternalServerError)
 	}
 

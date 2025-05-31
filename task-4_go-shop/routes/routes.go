@@ -14,10 +14,10 @@ func RegisterRoutes(e *echo.Echo) {
 	e.GET("/products/:id", controllers.GetProduct)
 
 	e.GET("/categories", controllers.ListCategories)
-	e.POST("/categories", controllers.CreateProduct)
-	e.PUT("/categories/:id", controllers.UpdateProduct)
-	e.DELETE("/categories/:id", controllers.RemoveProduct)
-	e.GET("/categories/:id", controllers.GetProduct)
+	e.POST("/categories", controllers.CreateCategory)
+	e.PUT("/categories/:id", controllers.UpdateCategory)
+	e.DELETE("/categories/:id", controllers.RemoveCategory)
+	e.GET("/categories/:id", controllers.GetCategory)
 	e.GET("/categories/:id/products", controllers.GetProductsByCategoryId)
 
 	e.GET("/carts", controllers.ListCarts)
@@ -25,7 +25,7 @@ func RegisterRoutes(e *echo.Echo) {
 	e.PUT("/carts/:id", controllers.UpdateCart)
 	e.DELETE("/carts/:id", controllers.RemoveCart)
 	e.GET("/carts/:id", controllers.GetCart)
-	e.POST("/carts/:id/products/:itemId", controllers.AddProductToCart)
+	e.POST("/carts/:id/products", controllers.AddProductToCart)
 	e.PUT("/carts/:id/products/:itemId", controllers.UpdateCartItem)
 	e.DELETE("/carts/:id/products/:itemId", controllers.RemoveCartItem)
 
